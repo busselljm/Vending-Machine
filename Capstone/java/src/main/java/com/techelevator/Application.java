@@ -3,6 +3,8 @@ package com.techelevator;
 import com.techelevator.view.BasicUI;
 import com.techelevator.view.MenuDrivenCLI;
 
+import java.io.IOException;
+
 public class Application {
 
 	private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
@@ -29,6 +31,7 @@ public class Application {
 	}
 
 	public void run() {
+		VendingMachine vM = new VendingMachine();
 
 		boolean finished = false;
 		while (!finished) {
@@ -36,6 +39,7 @@ public class Application {
 
 			if (selection.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
 				// display vending machine items
+				ui.output(vM.displayProducts());
 			} else if (selection.equals(MAIN_MENU_OPTION_PURCHASE)) {
 				// do purchase
 				purchaseItemsSubmenu();
