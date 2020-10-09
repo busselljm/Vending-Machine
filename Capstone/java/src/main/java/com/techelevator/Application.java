@@ -47,6 +47,7 @@ public class Application {
 				// do purchase
 				purchaseItemsSubmenu();
 			} else if (selection.equals(MAIN_MENU_OPTION_EXIT)) {
+				ui.output(vM.returnMoney());
 				finished = true;
 			}
 		}
@@ -68,7 +69,6 @@ public class Application {
 			}
 		} else if (selection.equals(SUB_MENU_SELECT_PRODUCT)) {
 			//selects product
-			vM.getBalance();
 			Scanner input = new Scanner(System.in);
 			ui.output("Please select an item location (example A1): ");
 			ui.output(vM.chooseProducts(input.nextLine().toUpperCase()));
