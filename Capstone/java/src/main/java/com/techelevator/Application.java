@@ -12,8 +12,8 @@ public class Application {
 	private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
 	private static final String MAIN_MENU_OPTION_PURCHASE = "Purchase";
 	private static final String MAIN_MENU_OPTION_EXIT = "Exit";
-	private static final String MAIN_MENU_OPTION_SALES_REPORT = "Sales Report";
-	private static final String[] MAIN_MENU_OPTIONS = { MAIN_MENU_OPTION_DISPLAY_ITEMS, MAIN_MENU_OPTION_PURCHASE, MAIN_MENU_OPTION_EXIT };
+	private static final String MAIN_MENU_OPTION_SALES_REPORT = "";
+	private static final String[] MAIN_MENU_OPTIONS = { MAIN_MENU_OPTION_DISPLAY_ITEMS, MAIN_MENU_OPTION_PURCHASE, MAIN_MENU_OPTION_EXIT};
 
 	private static final String SUB_MENU_FEED_MONEY = "Feed Money";
 	private static final String SUB_MENU_SELECT_PRODUCT = "Select Product";
@@ -47,35 +47,45 @@ public class Application {
 				// do purchase
 				purchaseItemsSubmenu();
 			} else if (selection.equals(MAIN_MENU_OPTION_EXIT)) {
-				ui.output(vM.returnMoney());
 				finished = true;
+			} else if (selection.equals(MAIN_MENU_OPTION_SALES_REPORT)) {
+				SalesReport.salesReport();
 			}
 		}
 	}
 
 	private void purchaseItemsSubmenu() {
-		String selection = ui.promptForSelection(SUB_MENU_OPTIONS);
+		boolean finished = false;
+		while (!finished) {
 
-		if (selection.equals(SUB_MENU_FEED_MONEY)) {
-			//deposit money to account
-			//ui.promptForInput("Money to be added")
-			Scanner input = new Scanner(System.in);
-			ui.output("Enter amount to insert: ");
-			try {
-				double moneyAmount = Double.parseDouble(input.nextLine());
-				ui.output(vM.addMoney(BigDecimal.valueOf(moneyAmount)));
-			} catch (NumberFormatException e) {
-				ui.output("Please enter a numerical amount.");
+			String selection = ui.promptForSelection(SUB_MENU_OPTIONS);
+
+			if (selection.equals(SUB_MENU_FEED_MONEY)) {
+				//deposit money to account
+				//ui.promptForInput("Money to be added")
+				Scanner input = new Scanner(System.in);
+				ui.output("Enter amount to insert: ");
+				try {
+					double moneyAmount = Double.parseDouble(input.nextLine());
+					ui.output(vM.addMoney(BigDecimal.valueOf(moneyAmount)));
+					VMLog.logGiveMoney(moneyAmount, vM.getBalance());
+				} catch (NumberFormatException e) {
+					ui.output("Please enter a numerical amount.");
+				}
+			} else if (selection.equals(SUB_MENU_SELECT_PRODUCT)) {
+				//selects product
+				Scanner input = new Scanner(System.in);
+				ui.output("Please select an item location (example A1): ");
+				String location = input.nextLine().toUpperCase();
+				ui.output(vM.chooseProducts(location));
+				VMLog.logPurchase(location, vM.getBalance());
+			} else if (selection.equals(SUB_MENU_FINISH_TRANSACTION)) {
+				//ends transaction and returns change
+				BigDecimal beforeBalance = vM.getBalance();
+				ui.output(vM.returnMoney());
+				VMLog.logReturnMoney(beforeBalance, vM.getBalance());
+				finished = true;
 			}
-		} else if (selection.equals(SUB_MENU_SELECT_PRODUCT)) {
-			//selects product
-			Scanner input = new Scanner(System.in);
-			ui.output("Please select an item location (example A1): ");
-			ui.output(vM.chooseProducts(input.nextLine().toUpperCase()));
-
-		} else if (selection.equals(SUB_MENU_FINISH_TRANSACTION)) {
-			//ends transaction and returns change
-			ui.output(vM.returnMoney());
 		}
 	}
 

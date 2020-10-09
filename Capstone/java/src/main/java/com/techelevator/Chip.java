@@ -6,6 +6,6 @@ public class Chip extends Product{
 
 
     public Chip(String location, String name, BigDecimal price) {
-        super(location, name, price, "Crunch Crunch, Yum!");
+        super(location, name, price, "Crunch Crunch, Yum!", "Chip");
     }
 }

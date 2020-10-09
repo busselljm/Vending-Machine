@@ -9,9 +9,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class VendingMachineProducts {
-    private String type;
 
-    public List<Product> products = new ArrayList<>();
+    public static List<Product> products = new ArrayList<>();
 
     public void createProductList() throws IOException {
         Path fileName = Paths.get("inventory.txt");
@@ -27,6 +26,10 @@ public class VendingMachineProducts {
                     newProductToAdd = new Drink(location, name, price);
                 } else if (type.equals("Chip")) {
                     newProductToAdd = new Chip(location, name, price);
+                } else if (type.equals("Gum")) {
+                    newProductToAdd = new Gum(location, name, price);
+                } else if (type.equals("Candy")) {
+                    newProductToAdd = new Candy(location, name, price);
                 }
                 products.add(newProductToAdd);
             }
@@ -41,7 +44,7 @@ public class VendingMachineProducts {
             if (!product.isAvailable()) {
                 product.setName("SOLD OUT");
             }
-            result += product.getLocation() + " | " + product.getName() + " | " + product.getPrice() + "\n";
+            result += product.getLocation() + " | " + product.getName() + " | " + product.getPrice() + " | " + product.getType() +"\n";
         }
         return result;
     }

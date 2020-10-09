@@ -18,14 +18,14 @@ public class VendingMachineBalance extends VendingMachineProducts{
         BigDecimal dimeValue = new BigDecimal("0.10");
         BigDecimal nickelValue = new BigDecimal("0.05");
 
-        while (getBalance().doubleValue() > 0) {
-            if (getBalance().doubleValue() >= quarterValue.doubleValue()) {
+        while (getBalance().compareTo(BigDecimal.ZERO) > 0) {
+            if (getBalance().compareTo(quarterValue) >= 0) {
                 quarters++;
                 this.balance = getBalance().subtract(quarterValue);
-            } else if (getBalance().doubleValue() >= dimeValue.doubleValue()) {
+            } else if (getBalance().compareTo(dimeValue) >= 0) {
                 dimes++;
                 this.balance = getBalance().subtract(dimeValue);
-            } else if (getBalance().doubleValue() >= nickelValue.doubleValue()) {
+            } else if (getBalance().compareTo(nickelValue) >= 0) {
                 nickels++;
                 this.balance = getBalance().subtract(nickelValue);
             }
@@ -47,7 +47,7 @@ public class VendingMachineBalance extends VendingMachineProducts{
         String result = "";
         for (Product product : products) {
             if (product.getLocation().contains(input)) {
-                if (getBalance().doubleValue() >= product.getPrice().doubleValue()) {
+                if (getBalance().compareTo(product.getPrice()) >= 0) {
                     if (product.isAvailable()) {
                         result = subtractMoney(product.getPrice()) + "\n" + product.getSound();
                         product.setInventoryLeft(product.getInventoryLeft() - 1);
