@@ -2,10 +2,8 @@ package com.techelevator;
 
 import java.math.BigDecimal;
 
-public class VendingMachineBalance {
-    private static final BigDecimal STARTING_BALANCE = new BigDecimal("0");
+public class VendingMachineBalance extends VendingMachineProducts{
     private BigDecimal balance = new BigDecimal("0");
-    private BigDecimal inputAmount;
 
     public BigDecimal getBalance() {
         return balance;
@@ -45,23 +43,18 @@ public class VendingMachineBalance {
         return "Current balance is $" + getBalance();
     }
 
-
-
-    public void setBalance(BigDecimal balance) {
-        this.balance = balance;
+    public String chooseProducts(String input) {
+        getBalance();
+        String result = "";
+        for (Product product : products) {
+            if (product.getLocation().contains(input)) {
+                if (getBalance().doubleValue() >= product.getPrice().doubleValue()) {
+                    result = subtractMoney(product.getPrice());
+                } else {
+                    result = "Not enough money, please add more or make another selection";
+                }
+            }
+        }
+        return result;
     }
-
-    public BigDecimal getInputAmount() {
-        return inputAmount;
-    }
-
-    public void setInputAmount(BigDecimal inputAmount) {
-        this.inputAmount = inputAmount;
-    }
-
-    //feed whole dollars
-
-
-    //return change
-
 }

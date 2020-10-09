@@ -68,6 +68,7 @@ public class Application {
 			}
 		} else if (selection.equals(SUB_MENU_SELECT_PRODUCT)) {
 			//selects product
+			vM.getBalance();
 			Scanner input = new Scanner(System.in);
 			ui.output("Please select an item location (example A1): ");
 			ui.output(vM.chooseProducts(input.nextLine().toUpperCase()));
