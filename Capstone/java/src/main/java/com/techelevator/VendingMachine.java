@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class VendingMachine {
+public class VendingMachine extends VendingMachineBalance {
+
+    VendingMachineBalance vmBalance = new VendingMachineBalance();
 
     public VendingMachine() {
         try {
@@ -16,6 +18,7 @@ public class VendingMachine {
         } catch (IOException e) {
             System.out.println("Couldn't find inventory file.");
         }
+        vmBalance.getBalance();
     }
 
     private List<Product> products = new ArrayList<>();
@@ -45,12 +48,23 @@ public class VendingMachine {
         return result;
     }
 
+    public String chooseProducts(String input) {
+        String result = "";
+        for (Product product : products) {
+            if (product.getLocation().contains(input)) {
+                result = vmBalance.subtractMoney(product.getPrice());
+            }
+        }
+        return result;
+    }
     //feed money
 
 
 
     //put account balance
 
+
     //return change
+
 }
 

@@ -4,9 +4,8 @@ import java.math.BigDecimal;
 
 public class VendingMachineBalance {
     private static final BigDecimal STARTING_BALANCE = new BigDecimal("0");
-    private BigDecimal balance;
+    private BigDecimal balance = new BigDecimal("0");
     private BigDecimal inputAmount;
-    private BigDecimal outputAmount;
 
     public BigDecimal getBalance() {
         return balance;
@@ -32,18 +31,18 @@ public class VendingMachineBalance {
                 nickels++;
                 this.balance = getBalance().subtract(nickelValue);
             }
-//            if (getBalance().doubleValue() >= quarterValue.doubleValue()) {
-//                quarters = getBalance().divide(quarterValue).intValue();
-//                this.balance = getBalance().subtract(quarterValue.multiply(BigDecimal.valueOf(quarters)));
-//            } else if (getBalance().doubleValue() >= .10) {
-//                dimes = getBalance().divide(dimeValue).intValue();
-//                this.balance = getBalance().subtract(dimeValue.multiply(BigDecimal.valueOf(dimes)));
-//            } else if (getBalance().doubleValue() >= .05) {
-//                nickels = getBalance().divide(nickelValue).intValue();
-//                this.balance = getBalance().subtract(nickelValue.multiply(BigDecimal.valueOf(nickels)));
-//            }
         }
         return "Giving back " + quarters + " quarters, " + dimes + " dimes, and " + nickels + " nickels";
+    }
+
+    public String addMoney(BigDecimal amountToDeposit) {
+        this.balance = balance.add(BigDecimal.valueOf(amountToDeposit.intValue()));
+        return "Current balance is $" + getBalance();
+    }
+
+    public String subtractMoney(BigDecimal productCost) {
+        balance = getBalance().subtract(productCost);
+        return "Current balance is $" + getBalance();
     }
 
 
@@ -58,14 +57,6 @@ public class VendingMachineBalance {
 
     public void setInputAmount(BigDecimal inputAmount) {
         this.inputAmount = inputAmount;
-    }
-
-    public BigDecimal getOutputAmount() {
-        return outputAmount;
-    }
-
-    public void setOutputAmount(BigDecimal outputAmount) {
-        this.outputAmount = outputAmount;
     }
 
     //feed whole dollars
