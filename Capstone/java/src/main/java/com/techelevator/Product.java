@@ -55,7 +55,7 @@ public class Product {
         inventoryLeft = inventoryLeft - 1;
     }
 
-
-
-
+    public void setInventoryLeft(int inventoryLeft) {
+        this.inventoryLeft = inventoryLeft;
+    }
 }

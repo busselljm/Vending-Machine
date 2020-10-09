@@ -50,6 +50,7 @@ public class VendingMachineBalance extends VendingMachineProducts{
             if (product.getLocation().contains(input)) {
                 if (getBalance().doubleValue() >= product.getPrice().doubleValue()) {
                     result = subtractMoney(product.getPrice());
+                    product.setInventoryLeft(product.getInventoryLeft() - 1);
                 } else {
                     result = "Not enough money, please add more or make another selection";
                 }
