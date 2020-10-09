@@ -1,4 +1,7 @@
-package com.techelevator;
+package com.techelevator.reports;
+
+import com.techelevator.product.Product;
+import com.techelevator.vendingmachine.VendingMachineProducts;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -7,14 +10,14 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class VMLog extends VendingMachineProducts{
+public class VMLog extends VendingMachineProducts {
 
     public static void logGiveMoney(double moneyAmount, BigDecimal balance) {
         try (FileOutputStream stream = new FileOutputStream("logs/log.txt", true);
              PrintWriter writer = new PrintWriter(stream)) {
             //date, time, feed money, amount given, total balance
             LocalDateTime current = LocalDateTime.now();
-            String date = current.format(DateTimeFormatter.ISO_LOCAL_DATE);
+            String date = current.format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
             String time = current.format(DateTimeFormatter.ISO_LOCAL_TIME);
             String timeNoMill = time.substring(0, time.length()-8);
 
@@ -29,7 +32,7 @@ public class VMLog extends VendingMachineProducts{
              PrintWriter writer = new PrintWriter(stream)) {
             //date, time, feed money, amount given, total balance
             LocalDateTime current = LocalDateTime.now();
-            String date = current.format(DateTimeFormatter.ISO_LOCAL_DATE);
+            String date = current.format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
             String time = current.format(DateTimeFormatter.ISO_LOCAL_TIME);
             String timeNoMill = time.substring(0, time.length()-8);
             String item = "";
@@ -53,7 +56,7 @@ public class VMLog extends VendingMachineProducts{
              PrintWriter writer = new PrintWriter(stream)) {
             //date, time, feed money, amount given, total balance
             LocalDateTime current = LocalDateTime.now();
-            String date = current.format(DateTimeFormatter.ISO_LOCAL_DATE);
+            String date = current.format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
             String time = current.format(DateTimeFormatter.ISO_LOCAL_TIME);
             String timeNoMill = time.substring(0, time.length()-8);
 

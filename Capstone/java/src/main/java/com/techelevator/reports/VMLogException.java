@@ -1,4 +1,4 @@
-package com.techelevator;
+package com.techelevator.reports;
 
 public class VMLogException extends RuntimeException{
 

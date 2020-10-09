@@ -1,9 +1,11 @@
 package com.techelevator;
 
+import com.techelevator.reports.SalesReport;
+import com.techelevator.reports.VMLog;
+import com.techelevator.vendingmachine.VendingMachine;
 import com.techelevator.view.BasicUI;
 import com.techelevator.view.MenuDrivenCLI;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Scanner;
 
@@ -12,8 +14,8 @@ public class Application {
 	private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
 	private static final String MAIN_MENU_OPTION_PURCHASE = "Purchase";
 	private static final String MAIN_MENU_OPTION_EXIT = "Exit";
-	private static final String MAIN_MENU_OPTION_SALES_REPORT = "";
-	private static final String[] MAIN_MENU_OPTIONS = { MAIN_MENU_OPTION_DISPLAY_ITEMS, MAIN_MENU_OPTION_PURCHASE, MAIN_MENU_OPTION_EXIT};
+	private static final String MAIN_MENU_OPTION_SALES_REPORT = "Sales report";
+	private static final String[] MAIN_MENU_OPTIONS = { MAIN_MENU_OPTION_DISPLAY_ITEMS, MAIN_MENU_OPTION_PURCHASE, MAIN_MENU_OPTION_EXIT, MAIN_MENU_OPTION_SALES_REPORT};
 
 	private static final String SUB_MENU_FEED_MONEY = "Feed Money";
 	private static final String SUB_MENU_SELECT_PRODUCT = "Select Product";

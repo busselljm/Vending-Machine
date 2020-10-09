@@ -1,4 +1,7 @@
-package com.techelevator;
+package com.techelevator.reports;
+
+import com.techelevator.product.Product;
+import com.techelevator.vendingmachine.VendingMachineProducts;
 
 import java.io.FileOutputStream;
 import java.io.IOException;

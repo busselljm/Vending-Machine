@@ -1,10 +1,8 @@
-package com.techelevator;
+package com.techelevator.vendingmachine;
 
 import java.io.IOException;
 
 public class VendingMachine extends VendingMachineBalance {
-
-    VendingMachineBalance vmBalance = new VendingMachineBalance();
 
     public VendingMachine() {
         try {
