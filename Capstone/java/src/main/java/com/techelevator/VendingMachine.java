@@ -14,15 +14,5 @@ public class VendingMachine extends VendingMachineBalance {
         }
     }
 
-
-    //feed money
-
-
-
-    //put account balance
-
-
-    //return change
-
 }
 

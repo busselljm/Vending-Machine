@@ -44,15 +44,18 @@ public class VendingMachineBalance extends VendingMachineProducts{
     }
 
     public String chooseProducts(String input) {
-        getBalance();
         String result = "";
         for (Product product : products) {
             if (product.getLocation().contains(input)) {
                 if (getBalance().doubleValue() >= product.getPrice().doubleValue()) {
-                    result = subtractMoney(product.getPrice());
-                    product.setInventoryLeft(product.getInventoryLeft() - 1);
+                    if (product.isAvailable()) {
+                        result = subtractMoney(product.getPrice()) + "\n" + product.getSound();
+                        product.setInventoryLeft(product.getInventoryLeft() - 1);
+                    } else {
+                        result = "Product out of stock, please make another selection.";
+                    }
                 } else {
-                    result = "Not enough money, please add more or make another selection";
+                    result = "Not enough money, please add more or make another selection.";
                 }
             }
         }

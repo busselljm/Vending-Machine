@@ -3,19 +3,18 @@ package com.techelevator;
 import java.math.BigDecimal;
 
 public class Product {
+    public String sound;
     private String location;
     private String name;
     private BigDecimal price;
-    private String type;
     private int inventoryLeft;
     private static final int STARTING_INVENTORY = 5;
 
 
-    public Product(String location, String name, BigDecimal price, String type) {
+    public Product(String location, String name, BigDecimal price, String sound) {
         this.location = location;
         this.name = name;
         this.price = price;
-        this.type = type;
         this.inventoryLeft = STARTING_INVENTORY;
     }
 
@@ -33,10 +32,6 @@ public class Product {
 
     public BigDecimal getPrice() {
         return price;
-    }
-
-    public String getType() {
-        return type;
     }
 
     public int getInventoryLeft() {
@@ -57,5 +52,14 @@ public class Product {
 
     public void setInventoryLeft(int inventoryLeft) {
         this.inventoryLeft = inventoryLeft;
+    }
+
+    public String getSound() {
+        return sound;
+    }
+
+
+    public void setSound(String sound) {
+        this.sound = sound;
     }
 }
